@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dirty Desires! Sip, Strip & Surrender.</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+<div id="ageGate" class="ageGate">
+<h2>🔞 Adults Only</h2>
+<p>You must be 18+ to play.</p></br >
+<button onclick="enterSite()">Enter</button>
+</div>
+
+<nav>
+
+<div class="logo">DirtyDesires</div>
+
+<div class="navButtons">
+<button onclick="toggleTheme()">🌙</button>
+<!--<button onclick="toggleMusic()">🎵</button>-->
+</div>
+
+</nav>
+
+<section class="hero">
+
+<h1>Sip, Strip & Surrender.</h1>
+
+<p>The Ultimate Drinking Game For Couples... Swingers Edition.</p>
+
+<div class="levels">
+
+<button onclick="setLevel('white')" class="active">White Cards</button>
+<button onclick="setLevel('red')">Red Cards</button>
+<button onclick="setLevel('black')">Black Cards</button></br >
+<button onclick="setLevel('whitetoy')" class="active">White Toy Cards</button>
+<button onclick="setLevel('redtoy')">Red Toy Cards</button>
+<button onclick="setLevel('blacktoy')">Black Toy Cards</button>
+
+</div>
+
+</section>
+
+<section class="game">
+
+<div id="cardStack">
+
+<div class="card">Draw a card.</div>
+
+</div>
+
+</section>
+
+<section class="controls">
+
+<button onclick="nextCard()">Draw Card</button>
+<!--<button onclick="toggleParty()">Party Mode</button>-->
+<button onclick="resetGame()">Reset</button>
+
+</section>
+
+<!--<section class="progress">
+
+<h3>Progress</h3>
+
+<div class="bar">
+<div id="progressFill"></div>
+</div>
+
+<p id="roundText">Round 0</p>
+
+</section>-->
+
+<footer>
+
+<!--<p>© 2026 Dirty Desires</p>-->
+
+</footer>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f4e0b0d61.mp3">
+</audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>
