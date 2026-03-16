@@ -7,8 +7,8 @@ const dares={
 white:[
 "Do or drink, act out as many sexy positions as you can in 2 mins with your partner.",
 "Do or drink, act out as many sexy positions as you can in 2 mins with the opposite sex.",
-"Do or drink, gently massage your partner’s shoulders and neck for 5 minutes.",
-"Do or drink, gently massage the shoulders and neck of the opposite sex for 5 minutes.",
+"Do or drink, gently massage your partner’s shoulders and neck for 2 minutes.",
+"Do or drink, gently massage the shoulders and neck of the opposite sex for 2 minutes.",
 "Do or drink, give your partner a lap dance.",
 "Do or drink, give the opposite sex a lap dance.",
 "Do or drink, hold hands with your partner and share what you love most about your sex life.",
