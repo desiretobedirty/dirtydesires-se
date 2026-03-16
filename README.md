@@ -1,2 +1,3 @@
 # dirtydesires-se
 Dirty Desires, Sip, Strip &amp; Surrender! Swingers Edition.
+The Ultimate Drinking Game For Couples....
