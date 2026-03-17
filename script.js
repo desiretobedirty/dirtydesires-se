@@ -16,7 +16,7 @@ white:[
 "Do or drink, kiss with tongues with your partner for 30 seconds.",
 "Do or drink, kiss with tongues with the opposite sex for 30 seconds.",
 "Do or drink, lick and suck on your partners ear.",
-"Do or drink, with the opposite sex lick and suck on their ear.",
+"Do or drink, lick and suck on the ear with the opposite sex.",
 "Do or drink, lick, suck or bite your partners feet. (Do 2 of the 3)",
 "Do or drink, lick, suck or bite the opposite sex' feet. (Do 2 of the 3)",
 "Do or drink, massage your partners booty.",
