@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dirty Desires! Sip, Strip & Surrender.</title>
+
+<style>
+:root{ --bg:#0f0f14; }
+body{font-family:system-ui,Arial;background:var(--bg);color:#fff;text-align:center;margin:0;padding:15px;}
+h1{font-size:1.6rem;color:#ff4d6d;}
+.info{font-size:0.9rem;opacity:0.9;margin-bottom:15px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.4;}
+.buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:15px;}
+button{padding:10px 14px;border:none;border-radius:12px;background:#222;color:#fff;cursor:pointer;font-size:0.9rem;}
+button:active{transform:scale(0.95);}
+.card-container{perspective:1000px;}
+.card{margin:10px auto;padding:20px 20px;width:100%;max-width:425px;min-height:250px;border-radius:20px;font-size:18px;display:flex;align-items:center;justify-content:center;transition:transform 0.6s;transform-style:preserve-3d;}
+.flip{transform:rotateY(180deg);}
+.white{background:#eee;color:#000;}
+.red{background:#ff0000;<!--border:2px solid #ffffff;-->}
+.black{background:#000;<!--border:2px solid #ffffff;-->}
+.whitetoy{background:#eee;color:#000;}
+.redtoy{background:#ff0000;<!--border:2px solid #ffffff;-->}
+.blacktoy{background:#000;<!--border:2px solid #ffffff;-->}
+@media(min-width:768px){h1{font-size:2rem}.card{font-size:22px}}
+</style>
+</head>
+<body>
+
+<script>
+  // If not verified, block page and show gate
+  if (localStorage.getItem("ageVerified") !== "true") {
+    document.write(`
+      <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        #ageGate {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #111;
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          z-index: 9999;
+        }
+        #ageGate button {
+          padding: 20px 20px;
+          margin: 10px;
+          font-size: 18px;
+          cursor: pointer;
+        }
+      </style>
+
+      <div id="ageGate">
+        <h1>🔞 Adults Only</h1>
+        <p>You must be 18+ to play.</p>
+        <button onclick="enterSite()">Enter</button>
+        <!--<button onclick="leaveSite()">No</button>-->
+      </div>
+
+      <script>
+        function enterSite() {
+          localStorage.setItem("ageVerified", "true");
+          location.reload();
+        }
+
+        function leaveSite() {
+          window.location.href = "https://www.google.com";
+        }
+      <\/script>
+    `);
+  }
+</script>
+
+<h1>Dirty Desires - 'Swingers Edition'</h1>
+
+<div class="info">
+<p><strong>Sip, Strip & Surrender. </strong>The Ultimate Drinking Game For Swingers...</p>
+</div>
+
+<div class="buttons">
+<button onclick="setCategory('white')">White Cards</button>
+<button onclick="setCategory('red')">Red Cards</button>
+<button onclick="setCategory('black')">Black Cards</button>
+<button onclick="setCategory('whitetoy')">White Toy Cards</button>
+<button onclick="setCategory('redtoy')">Red Toy Cards</button>
+<button onclick="setCategory('blacktoy')">Black Toy Cards</button>
+</div>
+
+<div class="card-container">
+<div id="card" class="card">Pick a category</div>
+</div>
+
+<button onclick="drawcard()">Draw Card</button>
+
+<script>
+const cardEl = document.getElementById('card');
+let currentCategory = '';
+
+const cards = {
+white:[
+"Do or drink, act out as many sexy positions as you can in 2 mins with your partner.",
+"Do or drink, act out as many sexy positions as you can in 2 mins with the opposite sex.",
+"Do or drink, gently massage your partner’s shoulders and neck for 2 minutes.",
+"Do or drink, gently massage the shoulders and neck of the opposite sex for 2 minutes.",
+"Do or drink, give your partner a lap dance.",
+"Do or drink, give the opposite sex a lap dance.",
+"Do or drink, hold hands with your partner and share what you love most about your sex life.",
+"Do or drink, hold hands with the opposite sex and share what you love most about your sex life.",
+"Do or drink, kiss with tongues with your partner for 30 seconds.",
+"Do or drink, kiss with tongues with the opposite sex for 30 seconds.",
+"Do or drink, lick and suck on your partners ear.",
+"Do or drink, lick and suck on the ear with the opposite sex.",
+"Do or drink, lick, suck or bite your partners feet.",
+"Do or drink, lick, suck or bite the opposite sex' feet.",
+"Do or drink, massage your partners booty.",
+"Do or drink, massage the booty of the opposite sex.",
+"Do or drink, moan your partners name as loud as possible.",
+"Do or drink, moan the name of an opposite sex as loud as possible.",
+"Do or drink, pin your partners arms above their head and kiss along their neck.",
+"Do or drink, pin the opposite sex arms above their head and kiss along their neck.",
+"Do or drink, seductively suck your partners fingers.",
+"Do or drink, seductively suck the fingers of the opposite sex.",
+"Do or drink, straddle your partners lap, kiss their neck and talk dirty to them.",
+"Do or drink, straddle the lap of the opposite sex, kiss their neck and talk dirty to them.",
+"Do or drink, take a shot off your partners body.",
+"Do or drink, take a shot off the body of the opposite sex.",
+"Do or drink, tell your partner what turns you on the most.",
+"Do or drink, tell the opposite sex what turns you on the most.",
+"Drink if, you are the first to finish. (one per couple)",
+"Drink if, you are the horniest.(one per couple)",
+"Drink if, you have faked an orgasm. (applies to all)",
+"Drink if, you have sent a dick/pussy pic. (applies to all)",
+"Drink if, you have woke up in the middle of the night and fucked. (applies to all)",
+"Drink if, you’d join the mile high club. (applies to all)",
+"Drink if, you’ve been spanked. (applies to all)",
+"Loser drinks, have a thumb war with your partner.",
+"Loser drinks, have a thumb war with the opposite sex.",
+"Loser drinks, Rock, Paper, Scissors with your partner.",
+"Loser drinks, Rock, Paper, Scissors with the opposite sex.",
+"Would you rather, bathroom or bedroom?",
+"Would you rather, bathroom or kitchen?",
+"Would you rather, bathroom or livingroom?",
+"Would you rather, bathroom, bedroom, kitchen or livingroom?",
+"Would you rather, bedroom or kitchen?",
+"Would you rather, bedroom or livingroom?",
+"Would you rather, fancy dinner out or cosy night in?",
+"Would you rather, give or receive?",
+"Would you rather, kitchen or livingroom?",
+"Would you rather, morning sex or night sex?",
+"Would you rather, romantic movie or dancing together?",
+"Would you rather, top or bottom?"
+],
+
+red:[
+"Do or drink, bend your partner over your knee and spank their arse.",
+"Do or drink, bend the opposite sex over your knee and spank their arse.",
+"Do or drink, bite the lip of your partner.",
+"Do or drink, bite the lip of the opposite sex.",
+"Do or drink, blindfold your partner, rub their pussy / cock and get them aroused.",
+"Do or drink, blindfold the opposite sex, rub their pussy / cock and get them aroused.",
+"Do or drink, blindfold your partner for the next two challenges.",
+"Do or drink, blindfold the opposite sex for the next two challenges.",
+"Do or drink, eat something sweet off the body of your partner.",
+"Do or drink, eat something sweet off the body of the opposite sex.",
+"Do or drink, finger your partner, put your finger in their mouth and tell them to suck it.",
+"Do or drink, finger the opposite sex, put your finger in their mouth and tell them to suck it.",
+"Do or drink, give your partner a titty wank.",
+"Do or drink, give the opposite sex a titty wank.",
+"Do or drink, kiss a part of your partners body where you want them to cum on when they finish.",
+"Do or drink, kiss a part of the opposite sex body where you want them to cum on when they finish.",
+"Do or drink, kiss your partner anywhere apart from on their lips.",
+"Do or drink, kiss the opposite sex anywhere apart from on their lips.",
+"Do or drink, lick and suck on your partners nipples.",
+"Do or drink, lick and suck on the nipples of the opposite sex.",
+"Do or drink, motorboat on your partners tits.",
+"Do or drink, motorboat on the tits of the opposite sex.",
+"Do or drink, you and your partner pleasure yourselves whilst maintaining eye contact.",
+"Do or drink, you and the opposite sex pleasure yourselves whilst maintaining eye contact.",
+"Do or drink, whisper in the ear of your partner the favourite thing your partner does during sex.",
+"Do or drink, whisper in the ear of the opposite sex the favourite thing your partner does during sex.",
+"Do or drink, spit in the mouth of your partner.",
+"Do or drink, spit in the mouth of the opposite sex.",
+"Do or drink, twerk on the face of your partner.",
+"Do or drink, twerk on the face of the opposite sex.",
+"Do or drink, whisper in your partners ear how you want the night to end.",
+"Do or drink, whisper in the ear of the opposite sex how you want the night to end.",
+"Do or drink, without using hands, remove their underwear leaving them completely naked.",
+"Do or drink, without using hands, remove the underwear of your partner leaving them completely naked.",
+"Do or drink, without using hands, remove the underwear of the opposite sex leaving them completely naked.",
+"Do or drink, write on your partner's arse ‘Owned by [your name]'.",
+"Do or drink, write on the opposite sex' arse ‘Owned by [your name]'.",
+"Drink if, you are the better driver. (one per couple)",
+"Drink if, you enjoy being choked. (applies to all)",
+"Drink if, you have a foot fetish. (applies to all)",
+"Drink if, you have had sex in a car. (applies to all)",
+"Drink if, you have had sex in front of the mirror. (applies to all)",
+"Drink if, you have hit it raw. (applies to all)",
+"Drink if, you have orgasmed at the same time. (applies to all)",
+"Drink if, you have swallowed their cum. (applies to all)",
+"Drink if, you moan the loudest. (one per couple)",
+"Drink if, you would have a pearl necklace. (one per couple)",
+"Drink if, you would have a threesome. (applies to all)",
+"Drink if, you would have sex in public. (applies to all)",
+"Drink if, you would try role play. (applies to all)",
+"Drink if, you would wear a butt plug. (applies to all)",
+"Fantasy fulfilled, you are a model posing for a sensual photo shoot and your partner has to direct you. Play for 3 minutes.",
+"Fantasy fulfilled,	you are a model posing for a sensual photo shoot and the opposite sex has to direct you. Play for 3 minutes.",
+"Fantasy fulfilled, you are unable to pay your rent and your partner is your landlord, what solution can you come up with? Play for 3 minutes.",
+"Fantasy fulfilled,	you are unable to pay your rent and the opposite sex is your landlord, what solution can you come up with? Play for 3 minutes.",
+"Loser drinks, arm wrestle with your partner.",
+"Loser drinks, arm wrestle with the opposite sex.",
+"Loser drinks, staring contest with your partner.",
+"Loser drinks, staring contest with the opposite sex.",
+"Would your partner rather, be in control or relinquish control? (Drink if wrong)",
+"Would your partner rather, be tied up or tie up? (Drink if wrong)",
+"Would your partner rather, blindfold or handcuffs? (Drink if wrong)",
+"Would your partner rather, toys or no toys? (Drink if wrong)"
+],
+
+black:[
+"Do or drink, bend your partner over a surface and play from behind.",
+"Do or drink, bend the opposite sex over a surface and play from behind.",
+"Do or drink, deep throat your partner and gag on his dick.",
+"Do or drink, deep throat the opposite sex and gag on his dick.",
+"Do or drink, do everything your partner says. Anything goes.",
+"Do or drink, do everything the opposite sex says. Anything goes.",
+"Do or drink, do whatever it takes to make your partner cum.",
+"Do or drink, do whatever it takes to make the opposite sex cum.",
+"Do or drink, eat your partners arse.",
+"Do or drink, eat the opposite sex' arse.",
+"Do or drink, eat your partner from behind.",
+"Do or drink, eat the opposite sex from behind.",
+"Do or drink, film yourselves doing your favourite sex position with your partner.",
+"Do or drink, film yourselves doing your favourite sex position with the opposite sex.",
+"Do or drink, finger your partner whilst she tells you everything she wants you to do to her.",
+"Do or drink, finger the opposite sex whilst she tells you everything she wants you to do to her.",
+"Do or drink, get on your knees and beg your partner for pleasure.",
+"Do or drink, get on your knees and beg the opposite sex for pleasure.",
+"Do or drink, have your partner act dominant for 3 minutes.",
+"Do or drink, have the opposite sex act dominant for 3 minutes.",
+"Do or drink, have your partner act submissive for 3 minutes.",
+"Do or drink, have the opposite sex act submissive for 3 minutes.",
+"Do or drink, lay your partners head off the end of the bed/sofa and fuck their face.",
+"Do or drink, lay the opposite sex' head off the end of the bed/sofa and fuck their face.",
+"Do or drink, lick your partners dick from the balls to the tip, sliding you tongue up and down his shaft.",
+"Do or drink, lick the opposite sex' dick from the balls to the tip, sliding you tongue up and down his shaft.",
+"Do or drink, lube up your partner and slide it in your arse.",
+"Do or drink, lube up the opposite sex and slide it in your arse.",
+"Do or drink, lube up and slide it in your partners arse.",
+"Do or drink, lube up and slide it in the opposite sex' arse.",
+"Do or drink, pin your partner up against the wall and fuck them from behind.",
+"Do or drink, pin the opposite sex against the wall and fuck them from behind.",
+"Do or drink, put your fingers in a hole of your partner and see how many fingers you can get inside.",
+"Do or drink, put your fingers in a hole of the opposite sex and see how many fingers you can get inside.",
+"Do or drink, sit on your partner's face.",
+"Do or drink, sit on the face of the opposite sex.",
+"Do or drink, sixty nine with your partner but eat each others arse.",
+"Do or drink, sixty nine with the opposite sex but eat each others arse.",
+"Do or drink, smack your dick on your partners clit.",
+"Do or drink, smack your dick on the clit of the opposite sex.",
+"Do or drink, suck on your partners balls and stroke his shaft.",
+"Do or drink, suck on the opposite sex' balls and stroke his shaft.",
+"Do or drink, swap between pain and pleasure. Give you partner light pain (spanking) and then give them pleasure (oral).",
+"Do or drink, swap between pain and pleasure. Give the opposite sex light pain (spanking) and then give them pleasure (oral).",
+"Do or drink, take a photo of your partner eating your pussy.",
+"Do or drink, take a photo of the opposite sex eating your pussy.",
+"Do or drink, take a photo of your partner sucking your cock.",
+"Do or drink, take a photo of the opposite sex sucking your cock.",
+"Do or drink, tie your partner up and pleasure them.",
+"Do or drink, tie the opposite sex up and pleasure them.",
+"Do or drink, try a new sex position with your partner that you’ve never done before.",
+"Do or drink, try a new sex position with the opposite sex that you’ve never done before.",
+"Drink if, you have a praise kink. (applies to all)",
+"Drink if, you have used a household item as a sex toy. (applies to all)",
+"Drink if, you have watched girl on girl porn. (applies to all)",
+"Drink if, you have watched guy on guy porn. (applies to all)",
+"Drink if, you like it up the arse. (applies to all)",
+"Drink if, you love a finger in the arse. (applies to all)",
+"Drink if, you would have a golden shower. (applies to all)",
+"Drink if, you would make a sex tape. (applies to all)",
+"Drink if, you would send a climax or cum shot video. (applies to all)",
+"Drink if, you would try food play. (applies to all)",
+"Drink if, you would try pegging. (applies to all)",
+"Drink if, you would try swinging. (applies to all)",
+"Drink if, you would wear a sex toy in public. (applies to all)",
+"Fantasy fulfilled, pretend your partner has come for a massage at your parlour and see where things end up.",
+"Fantasy fulfilled, pretend the opposite sex has come for a massage at your parlour and see where things end up.",
+"Fantasy fulfilled, you have been taken prisoner and your partner is your captive. Convince them to set you free.",
+"Fantasy fulfilled, you have been taken prisoner and the opposite sex is your captive. Convince them to set you free.",
+"Would they rather, be praised or be degraded? (Drink if wrong)",
+"Would they rather, choke or be choked? (Drink if wrong)",
+"Would they rather, dominate or be dominated? (Drink if wrong)",
+"Would they rather, pain or pleasure? (Drink if wrong)",
+"Would they rather, rough sex or slow and intense? (Drink if wrong)",
+"Would they rather, tie up or be tied up? (Drink if wrong)"
+],
+
+whitetoy:[
+"Do or drink, give your partner one light spank with the paddle or whip.",
+"Do or drink, give the opposite sex one light spank with the paddle or whip.",
+"Do or drink, name one toy you haven’t tried but would love to.",
+"Do or drink, pick a toy and describe a fantasy scene using it. No holding back.",
+"Do or drink, show your partner how you’d use the dildo on them.",
+"Do or drink, show the opposite sex how you’d use the dildo on them.",
+"Drink if, you’ve bought a toy just to impress a partner. (applies to all)",
+"Drink if, you’ve ever used a toy on yourself while thinking about your partner. (applies to all)",
+"How well do you know them, what’s the opposite sex’ top toy: dildo, vibrator, paddle or stroker?",
+"How well do you know them, what’s your partners top toy: dildo, vibrator, paddle or stroker?",
+"How well do you know them, where does the opposite sex prefer the vibrator first: nipples, clit, or inner thigh?",
+"How well do you know them, where does your partner prefer the vibrator first: nipples, clit, or inner thigh?",
+"Would you rather, be teased with a vibrator or be spanked with a paddle?",
+"Would you rather, control the toy or be controlled by it?"
+],
+
+redtoy:[
+"Do or drink, blindfold your partner and run a toy over their body.",
+"Do or drink, blindfold the opposite sex and run a toy over their body.",
+"Do or drink, let your partner guide your hand as you use the dildo on them.",
+"Do or drink, let the opposite sex guide your hand as you use the dildo on them.",
+"Do or drink, put the dildo between you legs and make your partner straddle it (no penetration).",
+"Do or drink, put the dildo between you legs and make the opposite sex straddle it (no penetration).",
+"Do or drink, use a toy on your partner but they can’t make a sound. If they do, you both drink.",
+"Do or drink, use a toy on the opposite sex but they can’t make a sound. If they do, you both drink.",
+"Do or drink, use the dildo on your partner to trace their pussy, no entry.",
+"Do or drink, use the dildo on the opposite sex to trace their pussy, no entry.",
+"Do or drink, use the paddle or whip on your partner to lightly mark their skin, 5 strokes.",
+"Do or drink, use the paddle or whip on the opposite sex to lightly mark their skin, 5 strokes.",
+"Do or drink, use the stroker (or lubed hand) on your partner for 30 seconds, slow and teasing.",
+"Do or drink, use the stroker (or lubed hand) on the opposite sex for 30 seconds, slow and teasing.",
+"Do or drink, use the vibrator on your partner while they keep eye contact with you for 1 minute.",
+"Do or drink, use the vibrator on the opposite sex while they keep eye contact with you for 1 minute.",
+"Do or drink, use the vibrator on your partner’s inner thighs while they stay still for 1 minute.",
+"Do or drink, use the vibrator on the opposite sex' inner thighs while they stay still for 1 minute.",
+"Do or drink, use the vibrator on your partners thighs, but don’t touch the clit for 2 minutes. Break the rule, take two shots.",
+"Do or drink, use the vibrator on the opposite sex' thighs, but don’t touch the clit for 2 minutes. Break the rule, take two shots.",
+"Drink if, you’ve ever used a toy in public. (Even a remote one). (applies to all)",
+"Drink if, you’ve faked a reaction to make them feel better while using a toy. (applies to all)",
+"Drink if, you’ve orgasmed from toy use alone, with no hands. (applies to all)",
+"How well do you know them, what’s your partners no-go zone when it comes to toys? (Drink if wrong)",
+"How well do you know them, what’s the opposite sex' no-go zone when it comes to toys? (Drink if wrong)",
+"How well do you know them, where’s your partners favourite place to be spanked: arse, thighs or elsewhere? (Drink if wrong)",
+"How well do you know them, where’s the opposite sex' favourite place to be spanked: arse, thighs or elsewhere? (Drink if wrong)",
+"Would they rather, paddle while being fingered or dildo while being spanked (Drink if wrong)",
+"Would they rather, silent toy or loud intense vibes? (Drink if wrong)",
+"Would they rather, vibrator on high for 30 seconds or paddle on the arse 5 times? (Drink if wrong)"
+],
+
+blacktoy:[
+"Do or drink, act out a full toy punishment scene: your partner is the strict dom, you’re the naughty submissive being corrected. Minimum 30 seconds.",
+"Do or drink, act out a full toy punishment scene: the opposite sex is the strict dom, you’re the naughty submissive being corrected. Minimum 30 seconds.",
+"Do or drink, bend your partner over. Use the paddle between thrusts with the dildo. 10 strokes.",
+"Do or drink, bend the opposite sex over. Use the paddle between thrusts with the dildo. 10 strokes.",
+"Do or drink, blindfold your partner. Use two toys at once. One for teasing, one for penetration.",
+"Do or drink, blindfold the opposite sex. Use two toys at once. One for teasing, one for penetration.",
+"Do or drink, let your partner gag you with the dildo whilst you make prolonged eye contact.",
+"Do or drink, let the opposite sex gag you with the dildo whilst you make prolonged eye contact.",
+"Do or drink, lube up the dildo and penetrate your partners arse. Go slow and sensual.",
+"Do or drink, lube up the dildo and penetrate the opposite sex arse. Go slow and sensual.",
+"Do or drink, lube your partner up and use the dildo in the position of your choice. You lead.",
+"Do or drink, lube the opposite sex up and use the dildo in the position of your choice. You lead.",
+"Do or drink, mix it all. Paddle, then the toy, then tease your partner. All within 3 minute or both drink.",
+"Do or drink, mix it all. Paddle, then the toy, then tease the opposite sex. All within 3 minute or both drink.",
+"Do or drink, push the dildo in your partner then hold it. Don’t move, just watch their reaction. 1 minute.",
+"Do or drink, push the dildo in the opposite sex then hold it. Don’t move, just watch their reaction. 1 minute.",
+"Do or drink, sit your partner on the dildo and paddle their thighs while they ride it.",
+"Do or drink, sit the opposite sex on the dildo and paddle their thighs while they ride it.",
+"Do or drink, use the dildo on your partner. Full penetration. Go slow, deep and dirty.",
+"Do or drink, use the dildo on the opposite sex. Full penetration. Go slow, deep and dirty.",
+"Do or drink, use the stroker (or lubed hand) while they watch, or both drink.",
+"Do or drink, use the vibrator on your partner while you talk dirty in their ear. 1 minute.",
+"Do or drink, use the vibrator on the opposite sex while you talk dirty in their ear. 1 minute.",
+"Do or drink, use the vibrator on your partner with penetration while you talk dirty in their ear. 1 minute.",
+"Do or drink, use the vibrator on the opposite sex with penetration while you talk dirty in their ear. 1 minute.",
+"Do or drink, use the vibrator on your partner’s arse while fingering / wanking them.",
+"Do or drink, use the vibrator on the opposite sex' arse while fingering / wanking them.",
+"Do or drink, you are the toy now. Do exactly what your partner tells you. 2 full minutes",
+"Do or drink, you are the toy now. Do exactly what the opposite sex tells you. 2 full minutes",
+"Drink if, you’ve cum from anal play. (applies to all)",
+"Drink if, you’ve ever recorded a toy session. (applies to all)",
+"Drink if, you’ve taken a toy in your arse. (applies to all)",
+"How well do you know them, does your partner prefer anal with a toy or oral while being spanked? (Drink if wrong)",
+"How well do you know them, does the opposite sex prefer anal with a toy or oral while being spanked? (Drink if wrong)",
+"How well do you know them, where’s your partners favourite hole to play with toys: mouth, arse or pussy? (Drink if wrong)",
+"How well do you know them, where’s the opposite sex' favourite hole to play with toys: mouth, arse or pussy? (Drink if wrong)",
+"Would they rather, deep penetration or intense clitoral stimulation with vibrator? (Drink if wrong)",
+"Would they rather, dildo doggy or vibrator on their clit while riding you? (Drink if wrong)",
+"Would they rather, spit or lube? (Drink if wrong)"
+]
+};
+
+let usedCards = {
+  white:[], red:[], black:[], whitetoy:[], redtoy:[], blacktoy:[]
+};
+
+function setCategory(cat){
+  currentCategory = cat;
+  drawcard();
+}
+
+function drawcard(){
+  if(!currentCategory){
+    cardEl.innerText = "Pick a category";
+    return;
+  }
+
+  const available = cards[currentCategory].filter(c => !usedCards[currentCategory].includes(c));
+
+  if(available.length === 0){
+    cardEl.className = 'card ' + currentCategory;
+    cardEl.innerText = "No more cards in this category";
+    return;
+  }
+
+  const randomIndex = Math.floor(Math.random() * available.length);
+  const selected = available[randomIndex];
+
+  usedCards[currentCategory].push(selected);
+
+  cardEl.classList.add('flip');
+
+  setTimeout(()=>{
+    cardEl.className = 'card ' + currentCategory;
+    cardEl.innerText = selected;
+  },300);
+
+  setTimeout(()=>{
+    cardEl.classList.remove('flip');
+  },600);
+}
+</script>
+
+</body>
+</html>
