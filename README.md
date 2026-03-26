@@ -1,7 +1,7 @@
 # dirtydesires-se
 Dirty Desires, Sip, Strip &amp; Surrender! Swingers Edition.
 #
-The ultimate drinking game for couples who want to spice things up.
+The ultimate drinking game for Swingers who want to spice things up.
 
 We build things up gradually using a simple colour system (White → Red → Black), so you move from light flirting to more intense and adventurous moments step by step, instead of everything feeling random.
 
