@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dirty Desires - SE</title>
+
+<link rel="stylesheet" href="./css/styles.css">
+
+<style>
+form.card {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+}
+
+form.card input[type="text"],
+form.card input[type="email"] {
+    width: 100% !important;
+    display: block !important;
+    padding: 12px !important;
+    box-sizing: border-box;
+}
+
+.checkbox-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+form.card button {
+    width: 100% !important;
+    padding: 12px;
+    cursor: pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Dirty Desires - 'Swingers Edition'</h1>
+    <p>Enter your details to begin</p>
+
+    <form id="entryForm" class="card">
+
+        <input type="text" name="name" placeholder="Your Name" required>
+
+        <input type="email" name="email" placeholder="Your Email" required>
+
+        <div class="checkbox-row">
+            <input type="checkbox" required>
+            <label>I agree to submit my details</label>
+        </div>
+
+        <button type="submit" class="button">Enter</button>
+
+    </form>
+
+</div>
+
+<script>
+const form = document.getElementById("entryForm");
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    // Send to Formspree (background)
+    fetch("https://formspree.io/f/xreozkzp", {
+        method: "POST",
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).catch(() => {
+        // silently fail if needed
+    });
+
+    // Mark user as entered
+    sessionStorage.setItem("entered", "true");
+
+    // Instant redirect
+    window.location.href = "dirtydesires.html";
+});
+</script>
+
+</body>
+</html>
